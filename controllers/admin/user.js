@@ -1,9 +1,5 @@
-const userModel = require("../models/userModel");
-const { sendResponse } = require('../utils/responseHandler');
-const {comparePassword} = require('../utils/comparePassword')
-const jwt = require('jsonwebtoken')
-
-
+const userModel = require("../../models/user");
+const { sendResponse } = require('../../utils/responseHandler');
 
 async function addUser(req, res, next) {
     const {userName, password, permission} = req.body;
@@ -58,10 +54,6 @@ async function userUpdate(req, res, next) {
         next(err);
     }
 }
-
-
-
-
 
 
 module.exports = {

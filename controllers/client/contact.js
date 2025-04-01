@@ -1,5 +1,5 @@
-const contactModel = require('../models/contactModel');
-const { sendResponse } = require('../utils/responseHandler');
+const contactModel = require('../../models/contact');
+const { sendResponse } = require('../../utils/responseHandler');
 
 async function addComment(req, res, next) {
     const {name, email, phoneNumber, subject, message} = req.body;

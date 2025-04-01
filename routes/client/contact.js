@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const contactController = require('../controllers/contactController');
-const { validateAddComment } = require('../validations/contactValidation');
-const { validationResults } = require('../middlewares/validationResults');
-const { authenticateToken } = require('../middlewares/authenticateToken');
-const { authorize } = require('../middlewares/authorize');
+const contactController = require('../../controllers/client/contact');
+const { validateAddComment } = require('../../validations/contactValidation');
+const { validationResults } = require('../../middlewares/validationResults');
+const { authenticateToken } = require('../../middlewares/authenticateToken');
+const { authorize } = require('../../middlewares/authorize');
 
 const applyAuthMiddleware = (roles) => [authenticateToken, authorize(roles)];
 

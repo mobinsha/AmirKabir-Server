@@ -1,4 +1,5 @@
 const { body } = require('express-validator');
+const {checkBlogExists} = require("../models/blog");
 
 validateAddBlog = [
     body('title')
@@ -12,7 +13,14 @@ validateAddBlog = [
         .withMessage('عنوان مقاله باید حداکثر ۲۲۵ کاراکتر باشد.')
         .bail()
         .matches(/^[a-zA-Z\u0600-\u06FF\u200C0-9\s،.!؟؛:()\[\]{}\-_"'«»]+$/)
-        .withMessage('عنوان فقط می‌تواند شامل حروف انگلیسی، فارسی، اعداد و فضاهای خالی باشد.'),
+        .withMessage('عنوان فقط می‌تواند شامل حروف انگلیسی، فارسی، اعداد و فضاهای خالی باشد.')
+        .custom(async (userName) => {
+            const blogExist = await checkBlogExists(userName);
+            if (blogExist) {
+                throw new Error('وبلاگی با این موضوع ثبت شده است');
+            }
+            return true;
+        }),
 
     body('content')
         .notEmpty()

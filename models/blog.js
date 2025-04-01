@@ -1,13 +1,18 @@
 const { dbConnection } = require('../config/dbConnection');
 const { SendError } = require('../utils/sendError');
 
-async function addBlog(blogData) {
+async function addBlog(title, content, author_id) {
     const [results] = await dbConnection.query(
         'INSERT INTO `blogs` (`title`, `content`, `author_id`, `created_at`, `updated_at`)' +
         ' VALUES (?, ?, ?, now(), now())',
-        [blogData.title, blogData.content, blogData.author_id]
+        [title, content, author_id]
     );
-    return { id: results.insertId, ...blogData };
+    return { id: results.insertId,title, content, author_id};
+}
+
+async function checkBlogExists(userName) {
+    const [rows] = await dbConnection.query('SELECT * FROM blogs WHERE title = ?', [userName]);
+    return rows.length > 0;
 }
 
 async function getAllBlogs() {
@@ -54,6 +59,7 @@ async function updateBlogs(blogId, blogData) {
 
 module.exports = {
     addBlog,
+    checkBlogExists,
     getAllBlogs,
     getBlogById,
     deleteBlog,

@@ -1,7 +1,7 @@
-const {checkForLogin} = require("../models/loginModel");
-const {comparePassword} = require("../utils/comparePassword");
+const {checkForLogin} = require("../../models/login");
+const {comparePassword} = require("../../utils/comparePassword");
 const jwt = require("jsonwebtoken");
-const {sendResponse} = require("../utils/responseHandler");
+const {sendResponse} = require("../../utils/responseHandler");
 
 
 async function login(req, res, next) {

@@ -1,5 +1,5 @@
 const { body } = require('express-validator');
-const { checkUserNameExists } = require('../models/userModel');
+const { checkUserNameExists } = require('../models/user');
 
 validateRegister = [
     body('userName')

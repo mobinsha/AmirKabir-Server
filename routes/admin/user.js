@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router();
-const userController = require('../controllers/userController');
-const {validateRegister, validateUpdate} = require('../validations/userValidation')
-const {validationResults} = require('../middlewares/validationResults')
+const userController = require('../../controllers/admin/user');
+const {validateRegister, validateUpdate} = require('../../validations/userValidation')
+const {validationResults} = require('../../middlewares/validationResults')
 
 
 router.post('/add', validateRegister, validationResults, userController.addUser);

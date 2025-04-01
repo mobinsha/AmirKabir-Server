@@ -1,6 +1,5 @@
-const slideModel =  require('../models/slideModel')
-const { sendResponse } = require('../utils/responseHandler');
-
+const {sendResponse} = require("../../utils/responseHandler");
+const slideModel = require("../../models/slide");
 
 async function uploadSlide(req, res, next) {
     try {
@@ -20,26 +19,6 @@ async function uploadSlide(req, res, next) {
     }
 }
 
-async function getAllSlides (req, res, next){
-    try {
-        const slides = await slideModel.getAllSlides()
-        sendResponse(res, 200, 'Success', slides)
-    } catch (err) {
-        next(err)
-    }
-}
-
-
-async function getSlideByTitle (req, res, next){
-    const slideTitle = req.params.title
-    try {
-        const slide = await slideModel.getSlideByTitle(slideTitle)
-        sendResponse(res, 200, 'Success', slide)
-    }catch (err){
-        next(err)
-    }
-}
-
 async function deleteSlide (req, res, next){
     const slideId = req.params.id
     try {
@@ -50,10 +29,7 @@ async function deleteSlide (req, res, next){
     }
 }
 
-
 module.exports = {
     uploadSlide,
-    getAllSlides,
-    getSlideByTitle,
     deleteSlide
 }
