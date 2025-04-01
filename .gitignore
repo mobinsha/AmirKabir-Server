@@ -1,0 +1,25 @@
+# Node.js
+node_modules/
+
+# .env files
+.env
+
+# Logs
+*.log
+logs/
+
+# Build directories
+dist/
+build/
+
+# IDE settings
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Database backups
+database/*.sql
+backup/*.db
+config
