@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const userController = require('../../controllers/admin/user');
-const {validateRegister, validateUpdate} = require('../../validations/userValidation')
+const {validateRegister, validateUpdate} = require('../../validations/user')
 const {validationResults} = require('../../middlewares/validationResults')
 
 

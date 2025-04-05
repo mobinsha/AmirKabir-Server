@@ -33,15 +33,17 @@ app.use('/slides', require("./routes/client/slide"))
 app.use('/contact', require("./routes/client/contact"))
 
 // inline variable
-const applyAuthMiddleware = (roles) => [authenticateToken, authorize(roles)];
-app.use('/admin/users', applyAuthMiddleware(['owner', 'admin', 'manager']), require("./routes/admin/user"));
-app.use('/admin/blogs', applyAuthMiddleware(['owner', 'admin', 'manager']), require("./routes/admin/blog"));
-app.use('/admin/slides', applyAuthMiddleware(['owner', 'admin', 'manager']), require("./routes/admin/slide"));
-
-
 // const applyAuthMiddleware = (roles) => [authenticateToken, authorize(roles)];
-// app.use(applyAuthMiddleware(['owner', 'admin', 'manager']))
-// app.use('/users', require("./routes/userRouter"))
+// app.use('/admin/users', applyAuthMiddleware(['owner', 'admin', 'manager']), require("./routes/admin/user"));
+// app.use('/admin/blogs', applyAuthMiddleware(['owner', 'admin', 'manager']), require("./routes/admin/blog"));
+// app.use('/admin/slides', applyAuthMiddleware(['owner', 'admin', 'manager']), require("./routes/admin/slide"));
+
+
+const applyAuthMiddleware = (roles) => [authenticateToken, authorize(roles)];
+app.use(applyAuthMiddleware(['owner', 'admin', 'manager']))
+app.use('/admin/users', require("./routes/admin/user"))
+app.use('/admin/blogs', require("./routes/admin/blog"))
+app.use('/admin/slides', require("./routes/admin/slide"))
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 

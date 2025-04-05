@@ -1,12 +1,12 @@
 const { dbConnection } = require('../config/dbConnection');
 const { SendError } = require('../utils/sendError');
 
-async function addSlide(slideData) {
+async function addSlide({keyCore, imageUrl, title, description}) {
     const [result] = await dbConnection.query(
-        'INSERT INTO `slides`(`image_url`, `title`, `description`, `created_at`) VALUES (?, ?, ?, now())',
-        [slideData.imageUrl, slideData.title, slideData.description]
+        'INSERT INTO `slides`(`keyCore`,`image_url`, `title`, `description`, `created_at`) VALUES (?,?, ?, ?, now())',
+        [keyCore, imageUrl, title, description]
     );
-    return { id: result.insertId, ...slideData };
+    return { id: result.insertId, imageUrl, title, description};
 }
 
 async function getAllSlides() {

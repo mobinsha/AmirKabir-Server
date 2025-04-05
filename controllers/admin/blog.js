@@ -15,7 +15,6 @@ async function addBlog (req, res, next) {
     const {title, content} = req.body;
     const author_id = req.user.id
     try {
-        await blogModel.findByTitle(title);
         const newBlog = await blogModel.addBlog(title, content, author_id)
         // there is some bug to send response to client and im have to fix it
         sendResponse(res, 201, 'مقاله شما با موفقیت ثبت شد.', newBlog);

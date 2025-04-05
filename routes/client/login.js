@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 router.post('/',
-    require("../../validations/loginValidation").validateLogin,
+    require("../../validations/login").validateLogin,
     require("../../middlewares/validationResults").validationResults,
     require("../../controllers/client/login").login);
 

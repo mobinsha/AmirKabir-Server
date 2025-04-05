@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const {validateAddBlog, validateUpdateBlog} = require('../../validations/blogValidation')
+const {validateAddBlog, validateUpdateBlog} = require('../../validations/blog')
 const {validationResults} = require('../../middlewares/validationResults')
 const {authenticateToken} = require('../../middlewares/authenticateToken')
 const {authorize} = require('../../middlewares/authorize')
