@@ -5,19 +5,16 @@ const {generateUUID} = require("../../utils/uuid");
 
 async function uploadSlide(req, res, next) {
     try {
-        if (!req.file) {
-            return sendResponse(res, 400, 'عکسی بارگزاری نشده است.');
-        }
         const newUuid = generateUUID();
-        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/slides/${req.file.filename}`;
+        const { title, description } = req.body;
 
         const result = await slideModel.addSlide({
             keyCore: newUuid,
-            imageUrl: imageUrl,
-            title: req.body.title,
-            description: req.body.description
-        })
-        sendResponse(res, 201, 'اسلاید با موفقیت اضافه شد', result)
+            imageUrl: `${req.protocol}://${req.get('host')}/uploads/slides/${req.file.filename}`,
+            title,
+            description
+        });
+        sendResponse(res, 201, 'اسلاید با موفقیت اضافه شد', result);
     } catch (err) {
         next(err)
     }
